@@ -7,6 +7,6 @@ const surfersRouter = Router();
 surfersRouter
   .post('/surfers', middleware.verifySurferData, controllers.createSurfer)
   .put('/surfers', middleware.verifySurferNewData, controllers.editSurfer)
-  .get('/surfers', controllers.getSurfersByCountry)
+  .get('/surfers', middleware.verifySurfersCountryValue, controllers.getSurfersByCountry)
 
 export default surfersRouter;

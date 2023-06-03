@@ -12,3 +12,7 @@ export const editSurferSchema = Joi.object<Surfer>({
   name: Joi.string(),
   country: Joi.string()
 });
+
+export const listingSurfersByCountry = Joi.object({
+  country: Joi.string()
+})

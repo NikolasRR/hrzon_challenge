@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { createSurferSchema, editSurferSchema } from "./schemas/surfersSchemas.js";
+import { createSurferSchema, editSurferSchema, listingSurfersByCountry } from "./schemas/surfersSchemas.js";
 
 async function verifySurferData(req: Request, res: Response, next: NextFunction) {
   const validation = createSurferSchema.validate(req.body, { abortEarly: false });
@@ -21,9 +21,20 @@ async function verifySurferNewData(req: Request, res: Response, next: NextFuncti
   next();
 }
 
+async function verifySurfersCountryValue(req: Request, res: Response, next: NextFunction) {
+  const validation = listingSurfersByCountry.validate(req.body, { abortEarly: false });
+  if (validation.error) throw { 
+    type: "schema", 
+    message: validation.error.details.map(detail => detail.message)
+  };
+
+  next();
+}
+
 const middleware = {
   verifySurferData,
-  verifySurferNewData
+  verifySurferNewData,
+  verifySurfersCountryValue
 }
 
 export default middleware;
