@@ -17,9 +17,14 @@ async function editByNumber(surfer: Surfer) {
   );
 }
 
+async function getByCountry(country: string) {
+  return await surfersRepo.get(country);
+}
+
 const surfersServices = {
   createOne,
-  editByNumber
+  editByNumber,
+  getByCountry
 }
 
 export default surfersServices;
