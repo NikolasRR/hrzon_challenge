@@ -19,3 +19,13 @@ export type Wave = {
 }
 
 export type WaveCreationData = Omit<Wave, "id">
+
+export type Grade = {
+  id: number,
+  wave: number,
+  parcial_one: number,
+  parcial_two: number,
+  parcial_three: number
+}
+
+export type GradeCreationData = Omit<Grade, "id">

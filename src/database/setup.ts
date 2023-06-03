@@ -32,9 +32,9 @@ async function CreateTables() {
   await client.query(`CREATE TABLE grades (
     id SERIAL PRIMARY KEY,
     wave INTEGER NOT NULL REFERENCES waves(id),
-    parcial_one INTEGER,
-    parcial_two INTEGER,
-    parcial_three INTEGER
+    parcial_one INTEGER NOT NULL,
+    parcial_two INTEGER NOT NULL,
+    parcial_three INTEGER NOT NULL
   )`, [])
 
   await client.end();

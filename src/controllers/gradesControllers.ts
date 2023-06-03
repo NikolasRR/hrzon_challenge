@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import gradesServices from "../services/gradesServices.js";
+import { GradeCreationData } from "../types/types.js";
 
 async function createGrade(req: Request, res: Response) {
-  const waveId = req.body.wave;
-  await gradesServices.createOne(waveId);
+  const gradeData: GradeCreationData = req.body;
+  await gradesServices.createOne(gradeData);
 
   res.sendStatus(201);
 }

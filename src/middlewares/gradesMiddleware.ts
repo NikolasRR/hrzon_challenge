@@ -12,7 +12,7 @@ async function verifyGradeData(req: Request, res: Response, next: NextFunction) 
 }
 
 const middleware = {
-  verifyGradeData
+  verifyGradeData,
 }
 
 export default middleware;
