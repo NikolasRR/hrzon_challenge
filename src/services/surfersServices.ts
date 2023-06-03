@@ -4,21 +4,21 @@ import { Surfer } from "../types/types.js";
 async function createOne(surfer: Surfer) {
   await surfersRepo.create(
     surfer.number,
-    surfer.name,
-    surfer.country
+    surfer.name.toUpperCase(),
+    surfer.country.toUpperCase()
   );
 }
 
 async function editByNumber(surfer: Surfer) {
   await surfersRepo.edit(
     surfer.number,
-    surfer.name,
-    surfer.country
+    surfer.name.toUpperCase(),
+    surfer.country.toUpperCase()
   );
 }
 
 async function getByCountry(country: string) {
-  return await surfersRepo.get(country);
+  return await surfersRepo.get(country.toUpperCase());
 }
 
 const surfersServices = {
