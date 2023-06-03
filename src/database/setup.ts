@@ -17,7 +17,7 @@ async function CreateTables() {
     country TEXT NOT NULL
   )`, [])
 
-  await client.query(`CREATE TABLE bateries (
+  await client.query(`CREATE TABLE batteries (
     id SERIAL PRIMARY KEY,
     surfer_one INTEGER NOT NULL REFERENCES surfers(number),
     surfer_two INTEGER NOT NULL REFERENCES surfers(number)
@@ -25,7 +25,7 @@ async function CreateTables() {
 
   await client.query(`CREATE TABLE waves (
     id SERIAL PRIMARY KEY,
-    batery INTEGER NOT NULL REFERENCES bateries(id),
+    batery INTEGER NOT NULL REFERENCES batteries(id),
     surfer INTEGER NOT NULL REFERENCES surfers(number)
   )`, [])
 

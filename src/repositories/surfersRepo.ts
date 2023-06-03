@@ -3,7 +3,7 @@ import { Surfer } from "../types/types.js";
 
 async function create(number: number, name: string, country: string) {
   await connection.query(`
-    INSERT into surfers (number, name, country)
+    INSERT INTO surfers (number, name, country)
     VALUES ($1, $2, $3)
   `, [number, name, country])
 }
