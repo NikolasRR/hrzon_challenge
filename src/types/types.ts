@@ -11,3 +11,11 @@ export type Battery = {
 }
 
 export type BatteryCreationData = Omit<Battery, "id">
+
+export type Wave = {
+  id: number,
+  battery: number,
+  surfer: number
+}
+
+export type WaveCreationData = Omit<Wave, "id">

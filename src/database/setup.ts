@@ -25,7 +25,7 @@ async function CreateTables() {
 
   await client.query(`CREATE TABLE waves (
     id SERIAL PRIMARY KEY,
-    batery INTEGER NOT NULL REFERENCES batteries(id),
+    battery INTEGER NOT NULL REFERENCES batteries(id),
     surfer INTEGER NOT NULL REFERENCES surfers(number)
   )`, [])
 
