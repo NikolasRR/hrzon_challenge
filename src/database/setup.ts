@@ -12,21 +12,21 @@ async function CreateTables() {
   await client.connect();
 
   await client.query(`CREATE TABLE surfers (
-    id SERIAL PRIMARY KEY,
+    number INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     country TEXT NOT NULL
   )`, [])
 
   await client.query(`CREATE TABLE bateries (
     id SERIAL PRIMARY KEY,
-    surfer_one INTEGER NOT NULL REFERENCES surfers(id),
-    surfer_two INTEGER NOT NULL REFERENCES surfers(id)
+    surfer_one INTEGER NOT NULL REFERENCES surfers(number),
+    surfer_two INTEGER NOT NULL REFERENCES surfers(number)
   )`, [])
 
   await client.query(`CREATE TABLE waves (
     id SERIAL PRIMARY KEY,
     batery INTEGER NOT NULL REFERENCES bateries(id),
-    surfer INTEGER NOT NULL REFERENCES surfers(id)
+    surfer INTEGER NOT NULL REFERENCES surfers(number)
   )`, [])
 
   await client.query(`CREATE TABLE grades (
@@ -41,4 +41,3 @@ async function CreateTables() {
 }
 
 CreateTables();
-console.log(process.env.DATABASE_URL);
