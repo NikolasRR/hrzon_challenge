@@ -6,3 +6,9 @@ export const createSurferSchema = Joi.object<Surfer>({
   name: Joi.string().required(),
   country: Joi.string().required()
 });
+
+export const editSurferSchema = Joi.object<Surfer>({
+  number: Joi.number().required(),
+  name: Joi.string(),
+  country: Joi.string()
+});

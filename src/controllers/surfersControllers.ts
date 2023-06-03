@@ -8,8 +8,16 @@ async function createSurfer(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
+async function editSurfer(req: Request, res: Response) {
+  const surfer =  req.body;
+  await surfersServices.editByNumber(surfer);
+
+  res.sendStatus(200);
+}
+
 const controllers = {
-  createSurfer
+  createSurfer,
+  editSurfer
 }
 
 export default controllers;

@@ -7,8 +7,21 @@ async function create(number: number, name: string, country: string) {
   `, [number, name, country])
 }
 
+async function edit(number: number, name: string, country: string) {
+  console.log('começou');
+  
+  await connection.query(`
+    UPDATE surfers
+    SET name = coalesce($1, name), country = coalesce($2, country)
+    WHERE number = $3
+  `, [name, country, number])
+  console.log("query terminou");
+  
+}
+
 const surfersRepo = {
-  create
+  create,
+  edit
 }
 
 export default surfersRepo;

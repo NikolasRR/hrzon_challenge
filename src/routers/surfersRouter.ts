@@ -4,6 +4,8 @@ import middleware from "../middlewares/surfersMiddleware.js";
 
 const surfersRouter = Router();
 
-surfersRouter.post('/surfer', middleware.verifySurferData, controllers.createSurfer)
+surfersRouter
+  .post('/surfer', middleware.verifySurferData, controllers.createSurfer)
+  .put('/surfer', middleware.verifySurferNewData, controllers.editSurfer)
 
 export default surfersRouter;

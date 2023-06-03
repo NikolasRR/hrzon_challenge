@@ -9,8 +9,17 @@ async function createOne(surfer: Surfer) {
   );
 }
 
+async function editByNumber(surfer: Surfer) {
+  await surfersRepo.edit(
+    surfer.number,
+    surfer.name,
+    surfer.country
+  );
+}
+
 const surfersServices = {
-  createOne
+  createOne,
+  editByNumber
 }
 
 export default surfersServices;
