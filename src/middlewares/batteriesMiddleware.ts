@@ -11,8 +11,16 @@ async function verifyBatteryData(req: Request, res: Response, next: NextFunction
   next();
 }
 
+async function verifyBatteryId(req: Request, res: Response, next: NextFunction) {
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) throw { type: "bad request", message: "invalid battery id" }
+
+  next();
+}
+
 const middleware = {
-  verifyBatteryData
+  verifyBatteryData,
+  verifyBatteryId
 }
 
 export default middleware;

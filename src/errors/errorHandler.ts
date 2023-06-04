@@ -12,6 +12,9 @@ export default async function errorHandler(error: error, req: Request, res: Resp
     case "schema":
       code = 400;
       break;
+    case "bad request":
+      code = 400;
+      break;
     case "not found":
       code = 404;
       break;

@@ -13,6 +13,8 @@ async function createOne(batteryData: BatteryCreationData) {
 
 async function getWinnerOfOne(id: number) {
   const batteryRunDown = await batteriesRepo.getByIdWithWavesAndGrades(id);
+  if (!batteryRunDown) throw { type: "not found", message: "battery not registered" }
+
   const result = { 
     batteryId: batteryRunDown.id, 
     winner: 'tie'
