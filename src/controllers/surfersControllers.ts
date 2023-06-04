@@ -24,7 +24,7 @@ async function removeSurfer(req: Request, res: Response) {
 }
 
 async function getSurfersByCountry(req: Request, res: Response) {
-  const country: string = req.body.country;
+  const country = req.query.country as string;
   const surfers = await surfersServices.getByCountry(country);
 
   res.send(surfers);

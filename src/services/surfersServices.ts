@@ -25,7 +25,7 @@ async function removeByNumber(number: number) {
 }
 
 async function getByCountry(country: string) {
-  return await surfersRepo.getManyByCountry(country?.toUpperCase());
+  return await surfersRepo.getManyByCountry(country === "" ? null : country?.toUpperCase());
 }
 
 const surfersServices = {
