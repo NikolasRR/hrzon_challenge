@@ -20,8 +20,14 @@ async function getWinnerOfOne(id: number) {
     winner: 'tie'
   }
 
+  if (!batteryRunDown.surferOne.grades || !batteryRunDown.surferTwo.grades) {
+    result.winner = "grades not set yet";
+    return result;
+  }
+
   const surferOneGrade = twoBiggestGradesSum(batteryRunDown.surferOne.grades);
   const surferTwoGrade = twoBiggestGradesSum(batteryRunDown.surferTwo.grades);
+  
 
   if (surferOneGrade > surferTwoGrade) result.winner = (await surfersRepo.getByNumber(batteryRunDown.surferOne.id)).name;
   if (surferOneGrade < surferTwoGrade) result.winner = (await surfersRepo.getByNumber(batteryRunDown.surferTwo.id)).name;

@@ -35,7 +35,7 @@ async function getByIdWithWavesAndGrades(id: number): Promise<BatteryWithGrades>
           ) 
           FROM waves w 
           JOIN grades g ON w.id = g.wave 
-          WHERE w.surfer = b.surfer_one
+          WHERE w.surfer = b.surfer_one AND w.battery = b.id
         )
       ) AS "surferOne",
       json_build_object(
@@ -50,7 +50,7 @@ async function getByIdWithWavesAndGrades(id: number): Promise<BatteryWithGrades>
           ) 
           FROM waves w 
           JOIN grades g ON w.id = g.wave 
-          WHERE w.surfer = b.surfer_two
+          WHERE w.surfer = b.surfer_two AND w.battery = b.id
         )
       ) AS "surferTwo"
     FROM batteries b 
