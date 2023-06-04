@@ -16,7 +16,7 @@ async function edit(number: number, name: string, country: string) {
   `, [name, country, number])
 }
 
-async function get(country: string): Promise<Surfer[]> {
+async function getManyByCountry(country: string): Promise<Surfer[]> {
   const result = await connection.query(`
     SELECT * FROM surfers WHERE country = coalesce($1, country)
   `, [country])
@@ -24,10 +24,19 @@ async function get(country: string): Promise<Surfer[]> {
   return result.rows
 }
 
+async function getById(id: number): Promise<Surfer> {
+  const result = await connection.query(`
+  SELECT * FROM surfers WHERE number = $1
+ `, [id])
+
+  return result.rows[0];
+}
+
 const surfersRepo = {
   create,
   edit,
-  get
+  getManyByCountry,
+  getById
 }
 
 export default surfersRepo;

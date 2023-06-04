@@ -1,13 +1,48 @@
 import batteriesRepo from "../repositories/batteriesRepo.js";
-import { BatteryCreationData } from "../types/types.js";
+import surfersRepo from "../repositories/surfersRepo.js";
+import { BatteryCreationData, GradeAvarage } from "../types/types.js";
 
 //TODO: verify if the provided surfers numbers are registered
 async function createOne(batteryData: BatteryCreationData) {
   await batteriesRepo.create(batteryData.surferOne, batteryData.surferTwo);
 }
 
+async function getWinnerOfOne(id: number) {
+  const batteryRunDown = await batteriesRepo.getByIdWithWavesAndGrades(id);
+  const result = { 
+    batteryId: batteryRunDown.id, 
+    winner: 'tie'
+  }
+
+  const surferOneGrade = twoBiggestGradesSum(batteryRunDown.surferOne.grades);
+  const surferTwoGrade = twoBiggestGradesSum(batteryRunDown.surferTwo.grades);
+
+  if (surferOneGrade > surferTwoGrade) result.winner = (await surfersRepo.getById(batteryRunDown.surferOne.id)).name;
+  if (surferOneGrade < surferTwoGrade) result.winner = (await surfersRepo.getById(batteryRunDown.surferTwo.id)).name;
+  
+  return result;
+}
+
+function twoBiggestGradesSum(grades: GradeAvarage[]) {
+  const avareges = grades.map(grade => grade.avarage);
+  let first = 0, second = 0;
+  
+  for (let i = 0; i < avareges.length; i++) {
+    if (avareges[i] > first) {
+      second = first;
+      first = avareges[i];
+    }
+    else if (avareges[i] > second && avareges[i] != first) {
+      second = avareges[i];
+    }
+  }
+
+  return first + second;
+}
+
 const batteriesServices = {
-  createOne
+  createOne,
+  getWinnerOfOne
 }
 
 export default batteriesServices;

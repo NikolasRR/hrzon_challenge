@@ -9,8 +9,16 @@ async function createBattery(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
+async function getWinnerOfBattery(req: Request, res: Response) {
+  const batteryId: number = parseInt(req.params.id);
+  const result = await batteriesServices.getWinnerOfOne(batteryId);
+
+  res.send(result);
+}
+
 const controllers = {
-  createBattery
+  createBattery,
+  getWinnerOfBattery
 }
 
 export default controllers;

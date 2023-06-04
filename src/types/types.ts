@@ -29,3 +29,20 @@ export type Grade = {
 }
 
 export type GradeCreationData = Omit<Grade, "id">
+
+export type GradeAvarage = {
+  waveId: number,
+  gradeId: number,
+  avarage: number
+}
+
+type SurferGrades = {
+  id: number,
+  grades: GradeAvarage[]
+}
+
+export type BatteryWithGrades = {
+  id: number,
+  surferOne: SurferGrades,
+  surferTwo: SurferGrades
+}

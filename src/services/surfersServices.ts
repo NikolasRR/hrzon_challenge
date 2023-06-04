@@ -18,7 +18,7 @@ async function editByNumber(surfer: Surfer) {
 }
 
 async function getByCountry(country: string) {
-  return await surfersRepo.get(country?.toUpperCase());
+  return await surfersRepo.getManyByCountry(country?.toUpperCase());
 }
 
 const surfersServices = {

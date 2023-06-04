@@ -5,5 +5,6 @@ import middleware from "../middlewares/batteriesMiddleware.js";
 const batteriesRouter = Router();
 batteriesRouter
   .post('/batteries', middleware.verifyBatteryData, controllers.createBattery)
+  .get('/batteries/winner/:id', controllers.getWinnerOfBattery)
 
 export default batteriesRouter;
