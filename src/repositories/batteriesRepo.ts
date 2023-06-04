@@ -1,11 +1,14 @@
 import connection from "../database/db.js";
 import { Battery, BatteryWithGrades } from "../types/types.js";
 
-async function create(numberOfSurferOne: number, numberOfSurferTwo: number) {
-  await connection.query(`
+async function create(numberOfSurferOne: number, numberOfSurferTwo: number): Promise<Battery> {
+  const result = await connection.query(`
     INSERT INTO batteries (surfer_one, surfer_two)
     VALUES ($1, $2)
+    RETURNING *
   `, [numberOfSurferOne, numberOfSurferTwo])
+
+  return result.rows[0];
 }
 
 async function getByIdAndSurferNumber(id: number, surferNumber: number): Promise<Battery[]> {

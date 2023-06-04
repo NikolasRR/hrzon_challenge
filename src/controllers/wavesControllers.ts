@@ -4,9 +4,9 @@ import wavesServices from "../services/wavesServices.js";
 
 async function createWave(req: Request, res: Response) {
   const waveData: WaveCreationData = req.body;
-  await wavesServices.createOne(waveData);
+  const wave = await wavesServices.createOne(waveData);
 
-  res.sendStatus(201);
+  res.status(201).send(wave);
 }
 
 const controllers = {

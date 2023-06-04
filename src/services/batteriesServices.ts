@@ -8,7 +8,7 @@ async function createOne(batteryData: BatteryCreationData) {
 
   if (!surferOne || !surferTwo) throw { type: "not found", message: "one or both surfers not registered" }
 
-  await batteriesRepo.create(batteryData.surferOne, batteryData.surferTwo);
+  return await batteriesRepo.create(batteryData.surferOne, batteryData.surferTwo);
 }
 
 async function getWinnerOfOne(id: number) {

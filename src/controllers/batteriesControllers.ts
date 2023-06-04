@@ -4,9 +4,9 @@ import batteriesServices from "../services/batteriesServices.js";
 
 async function createBattery(req: Request, res: Response) {
   const batteryData: BatteryCreationData = req.body;
-  await batteriesServices.createOne(batteryData);
+  const battery = await batteriesServices.createOne(batteryData);
 
-  res.sendStatus(201);
+  res.status(201).send(battery);
 }
 
 async function getWinnerOfBattery(req: Request, res: Response) {
