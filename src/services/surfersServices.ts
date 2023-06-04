@@ -12,8 +12,8 @@ async function createOne(surfer: Surfer) {
 async function editByNumber(surfer: Surfer) {
   await surfersRepo.edit(
     surfer.number,
-    surfer.name.toUpperCase(),
-    surfer.country.toUpperCase()
+    surfer.name?.toUpperCase(),
+    surfer.country?.toUpperCase()
   );
 }
 

@@ -4,7 +4,7 @@ import { WaveCreationData } from "../types/types.js";
 
 async function createOne(waveCreationData: WaveCreationData) {
   const batteryForThisWaveAndSurfer = await batteriesRepo.getByIdAndSurferNumber(waveCreationData.battery, waveCreationData.surfer);
-  if (batteryForThisWaveAndSurfer.length === 0) throw { type: "conflict", message: "surfer not on battery" }
+  if (batteryForThisWaveAndSurfer.length === 0) throw { type: "not found", message: "surfer not on battery" }
 
   await wavesRepo.create(waveCreationData.battery, waveCreationData.surfer);
 }
