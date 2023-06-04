@@ -3,6 +3,8 @@ import surfersRepo from "../repositories/surfersRepo.js";
 import { BatteryCreationData, GradeAvarage } from "../types/types.js";
 
 async function createOne(batteryData: BatteryCreationData) {
+  if (batteryData.surferOne == batteryData.surferTwo) throw { type: "bad request", message: "sufers numbers cannot be equal" }
+
   const surferOne = await surfersRepo.getByNumber(batteryData.surferOne);
   const surferTwo = await surfersRepo.getByNumber(batteryData.surferTwo);
 
