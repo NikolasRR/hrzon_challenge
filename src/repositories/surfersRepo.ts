@@ -26,7 +26,7 @@ async function getManyByCountry(country: string): Promise<Surfer[]> {
 
 async function getByNumber(number: number): Promise<Surfer> {
   const result = await connection.query(`
-  SELECT * FROM surfers WHERE number = $1
+    SELECT * FROM surfers WHERE number = $1
  `, [number])
 
   return result.rows[0];

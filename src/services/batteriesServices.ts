@@ -2,8 +2,12 @@ import batteriesRepo from "../repositories/batteriesRepo.js";
 import surfersRepo from "../repositories/surfersRepo.js";
 import { BatteryCreationData, GradeAvarage } from "../types/types.js";
 
-//TODO: verify if the provided surfers numbers are registered
 async function createOne(batteryData: BatteryCreationData) {
+  const surferOne = await surfersRepo.getByNumber(batteryData.surferOne);
+  const surferTwo = await surfersRepo.getByNumber(batteryData.surferTwo);
+
+  if (!surferOne || !surferTwo) throw { type: "not found", message: "one or both surfers not registered" }
+
   await batteriesRepo.create(batteryData.surferOne, batteryData.surferTwo);
 }
 
