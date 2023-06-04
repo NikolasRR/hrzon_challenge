@@ -3,8 +3,8 @@ import { createSurferSchema, editSurferSchema, listingSurfersByCountry } from ".
 
 async function verifySurferData(req: Request, res: Response, next: NextFunction) {
   const validation = createSurferSchema.validate(req.body, { abortEarly: false });
-  if (validation.error) throw { 
-    type: "schema", 
+  if (validation.error) throw {
+    type: "schema",
     message: (validation.error.details.map(detail => detail.message)).join(", ")
   };
 
@@ -13,8 +13,8 @@ async function verifySurferData(req: Request, res: Response, next: NextFunction)
 
 async function verifySurferNewData(req: Request, res: Response, next: NextFunction) {
   const validation = editSurferSchema.validate(req.body, { abortEarly: false });
-  if (validation.error) throw { 
-    type: "schema", 
+  if (validation.error) throw {
+    type: "schema",
     message: validation.error.details.map(detail => detail.message).join(", ")
   };
 
@@ -23,10 +23,17 @@ async function verifySurferNewData(req: Request, res: Response, next: NextFuncti
 
 async function verifySurfersCountryValue(req: Request, res: Response, next: NextFunction) {
   const validation = listingSurfersByCountry.validate(req.body, { abortEarly: false });
-  if (validation.error) throw { 
-    type: "schema", 
+  if (validation.error) throw {
+    type: "schema",
     message: validation.error.details.map(detail => detail.message).join(", ")
   };
+
+  next();
+}
+
+async function verifySurferNumber(req: Request, res: Response, next: NextFunction) {
+  const number = parseInt(req.params.number);
+  if (isNaN(number)) throw { type: "bad request", message: "invalid surfer number" }
 
   next();
 }
@@ -34,7 +41,8 @@ async function verifySurfersCountryValue(req: Request, res: Response, next: Next
 const middleware = {
   verifySurferData,
   verifySurferNewData,
-  verifySurfersCountryValue
+  verifySurfersCountryValue,
+  verifySurferNumber
 }
 
 export default middleware;

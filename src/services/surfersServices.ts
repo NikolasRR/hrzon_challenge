@@ -21,6 +21,9 @@ async function editByNumber(surfer: Surfer) {
 }
 
 async function removeByNumber(number: number) {
+  const surfer = await surfersRepo.getByNumber(number);
+  if (!surfer) throw { type: "not found", message: "surfer not registered" }
+
   await surfersRepo.removeByNumber(number);
 }
 
