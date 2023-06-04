@@ -20,6 +20,10 @@ async function editByNumber(surfer: Surfer) {
   );
 }
 
+async function removeByNumber(number: number) {
+  await surfersRepo.removeByNumber(number);
+}
+
 async function getByCountry(country: string) {
   return await surfersRepo.getManyByCountry(country?.toUpperCase());
 }
@@ -27,6 +31,7 @@ async function getByCountry(country: string) {
 const surfersServices = {
   createOne,
   editByNumber,
+  removeByNumber,
   getByCountry
 }
 

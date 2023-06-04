@@ -13,7 +13,14 @@ async function editSurfer(req: Request, res: Response) {
   const surfer: Surfer = req.body;
   await surfersServices.editByNumber(surfer);
 
-  res.sendStatus(200);
+  res.sendStatus(204);
+}
+
+async function removeSurfer(req: Request, res: Response) {
+  const surferNumber = parseInt(req.params.number);
+  await surfersServices.removeByNumber(surferNumber);
+
+  res.sendStatus(204);
 }
 
 async function getSurfersByCountry(req: Request, res: Response) {
@@ -26,6 +33,7 @@ async function getSurfersByCountry(req: Request, res: Response) {
 const controllers = {
   createSurfer,
   editSurfer,
+  removeSurfer,
   getSurfersByCountry
 }
 

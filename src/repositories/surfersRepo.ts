@@ -16,6 +16,12 @@ async function edit(number: number, name: string, country: string) {
   `, [name, country, number])
 }
 
+async function removeByNumber(number: number) {
+  await connection.query(`
+    DELETE FROM surfers WHERE number = $1
+  `, [number])
+}
+
 async function getManyByCountry(country: string): Promise<Surfer[]> {
   const result = await connection.query(`
     SELECT * FROM surfers WHERE country = coalesce($1, country)
@@ -35,6 +41,7 @@ async function getByNumber(number: number): Promise<Surfer> {
 const surfersRepo = {
   create,
   edit,
+  removeByNumber,
   getManyByCountry,
   getByNumber
 }
