@@ -24,10 +24,10 @@ async function getManyByCountry(country: string): Promise<Surfer[]> {
   return result.rows
 }
 
-async function getById(id: number): Promise<Surfer> {
+async function getByNumber(number: number): Promise<Surfer> {
   const result = await connection.query(`
   SELECT * FROM surfers WHERE number = $1
- `, [id])
+ `, [number])
 
   return result.rows[0];
 }
@@ -36,7 +36,7 @@ const surfersRepo = {
   create,
   edit,
   getManyByCountry,
-  getById
+  getByNumber
 }
 
 export default surfersRepo;

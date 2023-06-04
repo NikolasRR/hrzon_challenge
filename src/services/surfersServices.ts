@@ -10,6 +10,9 @@ async function createOne(surfer: Surfer) {
 }
 
 async function editByNumber(surfer: Surfer) {
+  const surferOnDB = await surfersRepo.getByNumber(surfer.number);
+  if (!surferOnDB) throw { type: "not found", message: "surfer not registered" }
+
   await surfersRepo.edit(
     surfer.number,
     surfer.name?.toUpperCase(),

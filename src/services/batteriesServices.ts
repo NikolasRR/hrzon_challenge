@@ -17,8 +17,8 @@ async function getWinnerOfOne(id: number) {
   const surferOneGrade = twoBiggestGradesSum(batteryRunDown.surferOne.grades);
   const surferTwoGrade = twoBiggestGradesSum(batteryRunDown.surferTwo.grades);
 
-  if (surferOneGrade > surferTwoGrade) result.winner = (await surfersRepo.getById(batteryRunDown.surferOne.id)).name;
-  if (surferOneGrade < surferTwoGrade) result.winner = (await surfersRepo.getById(batteryRunDown.surferTwo.id)).name;
+  if (surferOneGrade > surferTwoGrade) result.winner = (await surfersRepo.getByNumber(batteryRunDown.surferOne.id)).name;
+  if (surferOneGrade < surferTwoGrade) result.winner = (await surfersRepo.getByNumber(batteryRunDown.surferTwo.id)).name;
   
   return result;
 }
