@@ -18,6 +18,9 @@ export default async function errorHandler(error: error, req: Request, res: Resp
     case "not found":
       code = 404;
       break;
+    case "conflict":
+      code = 409;
+      break;
     default:
       code = 500;
       break;

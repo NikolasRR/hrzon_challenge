@@ -1,11 +1,14 @@
 import surfersRepo from "../repositories/surfersRepo.js";
 import { Surfer } from "../types/types.js";
 
-async function createOne(surfer: Surfer) {
+async function createOne(surferData: Surfer) {
+  const surfer = await surfersRepo.getByNumber(surferData.number);
+  if (surfer) throw { type: "conflict", message: "number already in use" }
+
   await surfersRepo.create(
-    surfer.number,
-    surfer.name.toUpperCase(),
-    surfer.country.toUpperCase()
+    surferData.number,
+    surferData.name.toUpperCase(),
+    surferData.country.toUpperCase()
   );
 }
 
